@@ -26,13 +26,47 @@ Leveraging the principles of the [Large Reconstruction Model (LRM)](https://yico
 
 The model is released under the MIT license, which includes the source code, pretrained models, and an interactive online demo. Our goal is to empower researchers, developers, and creatives to push the boundaries of what's possible in 3D generative AI and 3D content creation.
 
-## Getting Started
+# Getting Started
 ### Installation
 - Python >= 3.8
 - Install CUDA if available
 - Install PyTorch according to your platform: [https://pytorch.org/get-started/locally/](https://pytorch.org/get-started/locally/) **[Please make sure that the locally-installed CUDA major version matches the PyTorch-shipped CUDA major version. For example if you have CUDA 11.x installed, make sure to install PyTorch compiled with CUDA 11.x.]**
 - Update setuptools by `pip install --upgrade setuptools`
 - Install other dependencies by `pip install -r requirements.txt`
+
+
+### Pretrained Models:
+* 'stabilityai/TripoSR' from huggingface hub to download
+* 'facebook/dino-vitb16' from huggingface hub to download
+### Need to change something:
+
+* maybe you need to change below paramter:
+* 'huggingface' is a sub-folder in 'TripoSR-main' folder
+```
+TripoSR-main/
+  |
+  |
+  |--- huggingface/
+          |
+          |---- Trip/ # from 'stabilityai/TripoSR'
+          |      |---- config.yaml
+          |      |---- model.ckpt
+          |
+          |---- VIT/ # from 'facebook/dino-vitb16'
+                 |---- config.json
+```
+  
+```python
+# run.py
+parser.add_argument(
+    "--pretrained-model-name-or-path",
+    default="huggingface/Trip",
+    type=str,
+    help="Path to the pretrained model. Could be either a huggingface model id is or a local path. Default: 'stabilityai/TripoSR'",
+)
+```
+
+
 
 ### Manual Inference
 ```sh
